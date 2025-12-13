@@ -11,7 +11,8 @@ import compression from "compression";
 
 import connectDB from "./config/db.js";
 import adminRoutes from "./routes/adminRouts.js";
-
+import userRoutes from "./routes/userRoutes.js";
+import { verifyUser } from "./middleware/verifyUser.js";
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -91,6 +92,7 @@ app.use((req, res, next) => {
 
 /* ROUTES */
 app.use("/admin", adminRoutes);
+app.use("/", userRoutes);
 
 /* START SERVER */
 app.listen(PORT, () => {
