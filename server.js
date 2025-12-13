@@ -33,7 +33,7 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
-}else {
+} else {
   app.use(morgan("combined"));
 }
 
@@ -93,6 +93,17 @@ app.use((req, res, next) => {
 /* ROUTES */
 app.use("/admin", adminRoutes);
 app.use("/", userRoutes);
+
+/* 404 HANDLER */
+app.use((req, res, next) => {
+  res.status(404).render("error-404");
+});
+
+/* GLOBAL ERROR HANDLER */
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(err.status || 500).render("error-404");
+});
 
 /* START SERVER */
 app.listen(PORT, () => {
