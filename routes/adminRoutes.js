@@ -3,9 +3,10 @@ import {
   adminAddProductPage,
   adminDashboardPage,
   adminLoginPage,
+  adminProductsListPage,
 } from "../controllers/adminController.js";
 import { adminLogin } from "../controllers/adminAuth.js";
-import { adminAddProduct } from "../controllers/productController.js";
+import { adminAddProduct, deleteProduct } from "../controllers/productController.js";
 import { uploadFiles } from "../middleware/uploadMiddleware.js";
 
 const adminRoutes = Router({ mergeParams: true });
@@ -28,5 +29,9 @@ adminRoutes.post(
 );
 
 adminRoutes.post("/add-product", adminAddProduct);
+
+adminRoutes.get("/products-list", adminProductsListPage);
+
+adminRoutes.post("/perfume/:id/delete", deleteProduct);
 
 export default adminRoutes;

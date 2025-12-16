@@ -1,6 +1,22 @@
 import { v7 as uuid7 } from "uuid";
 import connectDB from "../config/db.js";
 import collection from "../config/collection.js";
+import { ObjectId } from "mongodb";
+import fs from "fs";
+import path from "path";
+
+const deleteFile = (filePath) => {
+  if (!filePath) return;
+
+  const absolutePath = path.join(process.cwd(), "public", filePath);
+
+  if (fs.existsSync(absolutePath)) {
+    fs.unlinkSync(absolutePath);
+    console.log("🗑️ Deleted file:", absolutePath);
+  } else {
+    console.log("⚠️ File not found:", absolutePath);
+  }
+};
 
 export const adminAddProduct = async (req, res) => {
   console.log("add funcion api called >>>>>>", req.body);
@@ -63,11 +79,50 @@ export const adminAddProduct = async (req, res) => {
     const result = db.collection("products").insertOne(newProduct);
 
     if (result) {
-      res.redirect("/admin/dashboard");
+      res.redirect("/admin/products-list");
     } else {
       res.status(500).json({ message: "Failed to add product" });
     }
   } catch (error) {
     res.status(500).json({ message: "Server Error", error: error.message });
+  }
+};
+
+export const deleteProduct = async (req, res) => {
+  console.log(">>>>>>>>>>>>deletebookFuntionCalled");
+
+  try {
+    const productId = req.params.id;
+    console.log(productId);
+
+    const db = await connectDB();
+
+    // 1️⃣ Fetch product data to get file paths
+    const productData = await db
+      .collection(collection.PRODUCTS_COLLECTION)
+      .findOne({ _id: new ObjectId(productId) });
+
+    if (!productData) {
+      return res.status(404).send("Product not found");
+    }
+
+    // 2️⃣ Delete thumbnail
+    deleteFile(productData.thumbnail);
+
+    // 3️⃣ Delete product images
+    if (Array.isArray(productData.images)) {
+      productData.images.forEach((imgPath) => {
+        deleteFile(imgPath);
+      });
+    }
+    // 4️⃣ Delete product record from DB
+    await db
+      .collection(collection.PRODUCTS_COLLECTION)
+      .deleteOne({ _id: new ObjectId(productId) });
+
+    res.redirect("/admin/products-list");
+  } catch (error) {
+    console.log("Delete product error:", error);
+    res.status(500).send("Failed to delete the perfume.");
   }
 };
