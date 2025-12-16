@@ -126,3 +126,47 @@ export const deleteProduct = async (req, res) => {
     res.status(500).send("Failed to delete the perfume.");
   }
 };
+
+export const editProduct = async (req, res) => {
+  console.log("edit product function called >>>>>>");
+  console.log("Body:", req.body);
+  try {
+    const {
+      productName,
+      brand,
+      category,
+      fragranceType,
+      volume,
+      shortDescription,
+      fullDescription,
+      regularPrice,
+      discountPrice,
+      stock,
+      rating,
+    } = req.body;
+
+    const editedProduct = {
+      productName,
+      brand,
+      category,
+      fragranceType,
+      volume,
+      shortDescription,
+      fullDescription,
+      price: parseInt(regularPrice),
+      discountPrice: parseInt(discountPrice),
+      stock: parseInt(stock),
+      rating: parseInt(rating),
+      updatedAt: new Date(),
+    };
+    const db = await connectDB();
+    const result = await db
+      .collection(collection.PRODUCTS_COLLECTION)
+      .updateOne({ _id: new ObjectId(req.params.id) }, { $set: editedProduct });
+
+    res.redirect("/admin/products-list");
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Failed to edit the product.");
+  }
+};

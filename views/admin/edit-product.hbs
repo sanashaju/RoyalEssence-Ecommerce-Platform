@@ -1,0 +1,161 @@
+<section class="content-main">
+  <form action="/admin/product/edit/{{product._id}}" method="POST">
+
+    <div class="row">
+      <!-- Header -->
+      <div class="col-9">
+        <div class="content-header">
+          <h2 class="content-title">Edit Product</h2>
+          <button type="submit" class="btn btn-md rounded font-sm hover-up">
+            Update Product
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Form -->
+      <div class="col-lg-6">
+        <div class="card mb-4">
+          <div class="card-header">
+            <h4>Basic</h4>
+          </div>
+
+          <div class="card-body">
+
+            <!-- Product Name -->
+            <div class="mb-4">
+              <label class="form-label">Product Name</label>
+              <input
+                type="text"
+                name="productName"
+                class="form-control"
+                value="{{product.productName}}"
+                required
+              />
+            </div>
+
+            <!-- Brand & Category -->
+            <div class="row gx-2">
+              <div class="col-lg-6 mb-3">
+                <label class="form-label">Brand Name</label>
+                <select class="form-select" name="brand" required>
+                  <option value="">Select brand</option>
+                  {{#each brands}}
+                    <option value="{{this}}" {{#ifEquals this ../product.brand}}selected{{/ifEquals}}>
+                      {{this}}
+                    </option>
+                  {{/each}}
+                </select>
+              </div>
+
+              <div class="col-lg-6 mb-3">
+                <label class="form-label">Category</label>
+                <select class="form-select" name="category" required>
+                  <option value="">Select category</option>
+                  <option value="Men" {{#ifEquals product.category "Men"}}selected{{/ifEquals}}>Men</option>
+                  <option value="Women" {{#ifEquals product.category "Women"}}selected{{/ifEquals}}>Women</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Fragrance & Volume -->
+            <div class="row gx-2">
+              <div class="col-lg-6 mb-3">
+                <label class="form-label">Fragrance Type</label>
+                <select class="form-select" name="fragranceType">
+                  {{#each fragranceTypes}}
+                    <option value="{{this}}" {{#ifEquals this ../product.fragranceType}}selected{{/ifEquals}}>
+                      {{this}}
+                    </option>
+                  {{/each}}
+                </select>
+              </div>
+
+              <div class="col-lg-6 mb-3">
+                <label class="form-label">Volume</label>
+                <select class="form-select" name="volume">
+                  {{#each volumes}}
+                    <option value="{{this}}" {{#ifEquals this ../product.volume}}selected{{/ifEquals}}>
+                      {{this}}
+                    </option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+
+            <!-- Descriptions -->
+            <div class="mb-4">
+              <label class="form-label">Short Description</label>
+              <textarea
+                name="shortDescription"
+                class="form-control"
+                rows="3"
+              >{{product.shortDescription}}</textarea>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label">Full Description</label>
+              <textarea
+                name="fullDescription"
+                class="form-control"
+                rows="5"
+              >{{product.fullDescription}}</textarea>
+            </div>
+
+            <!-- Pricing -->
+            <div class="row gx-2">
+              <div class="col-lg-6 mb-3">
+                <label class="form-label">Price</label>
+                <input
+                  type="number"
+                  name="regularPrice"
+                  class="form-control"
+                  step="0.01"
+                  value="{{product.price}}"
+                  required
+                />
+              </div>
+
+              <div class="col-lg-6 mb-3">
+                <label class="form-label">Discount Price</label>
+                <input
+                  type="number"
+                  name="discountPrice"
+                  class="form-control"
+                  step="0.01"
+                  value="{{product.discountPrice}}"
+                />
+              </div>
+            </div>
+
+            <!-- Stock & Rating -->
+            <div class="row gx-2">
+              <div class="col-lg-6 mb-3">
+                <label class="form-label">Stock</label>
+                <input
+                  type="number"
+                  name="stock"
+                  class="form-control"
+                  value="{{product.stock}}"
+                  required
+                />
+              </div>
+
+              <div class="col-lg-6 mb-3">
+                <label class="form-label">Rating</label>
+                <input
+                  type="number"
+                  name="rating"
+                  class="form-control"
+                  step="0.1"
+                  max="5"
+                  value="{{product.rating}}"
+                />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
