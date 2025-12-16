@@ -43,6 +43,4 @@ adminRoutes.get("/product/edit/:id", editProductPage);
 
 adminRoutes.post("/product/edit/:id", editProduct);
 
-
-
 export default adminRoutes;
