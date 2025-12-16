@@ -1,8 +1,12 @@
 import { v7 as uuid7 } from "uuid";
 import connectDB from "../config/db.js";
+import collection from "../config/collection.js";
 
 export const adminAddProduct = async (req, res) => {
   console.log("add funcion api called >>>>>>", req.body);
+  console.log("create product route working >>>>>>>>");
+  console.log("Body:", req.body);
+  console.log("Files:", req.files);
   try {
     const {
       productName,
@@ -14,15 +18,23 @@ export const adminAddProduct = async (req, res) => {
       fullDescription,
       regularPrice,
       discountPrice,
-      price,
       stock,
       rating,
     } = req.body;
 
+    // Thumbnail (single)
+    const thumbnail = req.files?.thumbnail?.[0]?.filename || null;
+
+    //Product Images (multiple)
+    const productImages =
+      req.files?.productImages?.map(
+        (file) => `/userAssets/uploads/${file.filename}`
+      ) || [];
+
     const db = await connectDB();
 
     let productExists = db
-      .collection("products")
+      .collection(collection.PRODUCTS_COLLECTION)
       .findOne({ productName: productName });
 
     if (!productExists) {
@@ -38,10 +50,12 @@ export const adminAddProduct = async (req, res) => {
       volume,
       shortDescription,
       fullDescription,
-      regularPrice,
-      discountPrice,
-      stock,
-      rating,
+      price: parseInt(regularPrice),
+      discountPrice: parseInt(discountPrice),
+      stock: parseInt(stock),
+      rating: parseInt(rating),
+      thumbnail: `/userAssets/uploads/${thumbnail}`,
+      images: productImages,
       updatedAt: new Date(),
       createdAt: new Date(),
     };

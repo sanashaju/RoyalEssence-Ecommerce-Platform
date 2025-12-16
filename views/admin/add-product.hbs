@@ -1,5 +1,5 @@
 <section class="content-main">
-  <form action="/admin/add-product" method="POST">
+  <form action="/admin/add-product" method="POST" enctype="multipart/form-data">
 
     <div class="row">
       <!-- Header -->
@@ -176,45 +176,40 @@
       </div>
 
       <!-- Media Upload -->
-      {{! <div class="col-lg-3">
+      <div class="col-lg-3">
         <div class="card mb-4">
           <div class="card-header">
             <h4>Media</h4>
           </div>
           <div class="card-body">
-            <div class="input-upload">
-              <img src="/adminAssets/imgs/theme/upload.svg" alt="Upload" />
-              <input class="form-control" type="file" name="images" multiple />
-            </div>
+            <!-- Thumbnail -->
+                <div class="mb-4">
+                  <label class="form-label">Thumbnail Image</label>
+                  <input
+                    class="form-control"
+                    type="file"
+                    name="thumbnail"
+                    accept="image/*"
+                    required
+                  />
+                </div>
+
+                <!-- Product Images -->
+                <div class="mb-4">
+                  <label class="form-label">Product Images (Max 3)</label>
+                  <input
+                    class="form-control"
+                    type="file"
+                    name="productImages"
+                    accept="image/*"
+                    multiple
+                    required
+                  />
+                </div>
           </div>
         </div>
-      </div> }}
+      </div>
       <!-- Thumbnail -->
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <label class="form-label">Thumbnail Image</label>
-          <input
-            class="form-control"
-            type="file"
-            name="thumbnail"
-            accept="image/*"
-            required
-          />
-        </div>
-      </div>
-
-      <!-- Product Images -->
-      <div class="col-md-4 mb-4">
-        <label class="form-label">Product Images(Max 3)</label>
-        <input
-          class="form-control"
-          type="file"
-          name="productImages"
-          accept="image/*"
-          multiple
-          required
-        />
-      </div>
 
     </div>
   </form>
