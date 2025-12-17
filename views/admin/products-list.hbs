@@ -1,50 +1,46 @@
 <section class="content-main">
+
+  <!-- Header -->
   <div class="content-header">
     <div>
       <h2 class="content-title card-title">Products List</h2>
-      <p>Find the perfect prefumes for every day use and Special Events.</p>
+      <p>Find the perfect perfumes for everyday use and special events.</p>
     </div>
     <div>
       <a href="#" class="btn btn-light rounded font-md">Export</a>
       <a href="#" class="btn btn-light rounded font-md">Import</a>
-      <a href="/admin/add-product" class="btn btn-primary btn-sm rounded">Create
-        new</a>
+      <a href="/admin/add-product" class="btn btn-primary btn-sm rounded">
+        Create new
+      </a>
     </div>
   </div>
+
+  <!-- Filters -->
   <header class="card card-body mb-4">
-    <div class="row gx-3">
-      <div class="col-lg-4 col-md-6 me-auto">
+    <div class="row gx-3 align-items-center">
+      <div class="col-lg-4 col-md-6">
         <input type="text" placeholder="Search..." class="form-control" />
       </div>
-      <div class="col-lg-2 col-6 col-md-3">
+
+      <div class="col-lg-2 col-md-3 col-6">
         <select class="form-select">
           <option>All Brands</option>
-          <option>Belle</option>
-          <option>Blue Lady</option>
-          <option>Coach</option>
-          <option>DavidOff</option>
-          <option>YVES Saint Laurent</option>
           <option>Dior</option>
-          <option>Dolce</option>
-          <option>Givenchy</option>
-          <option>Jimmy Choo</option>
-          <option>Kayali</option>
-          <option>Kenzo</option>
-          <option>Narciso Rodrigues</option>
-          <option>Paco Rabanne</option>
-          <option>Poison Dior</option>
-          <option>Shalimar</option>
-          <option>Skinn</option>
+          <option>Gucci</option>
+          <option>YSL</option>
+          <option>Versace</option>
         </select>
       </div>
-      <div class="col-lg-2 col-6 col-md-3">
+
+      <div class="col-lg-2 col-md-3 col-6">
         <select class="form-select">
           <option>Category</option>
           <option>Men</option>
           <option>Women</option>
         </select>
       </div>
-      <div class="col-lg-2 col-6 col-md-3">
+
+      <div class="col-lg-2 col-md-3 col-6">
         <select class="form-select">
           <option>Latest added</option>
           <option>Cheap first</option>
@@ -53,127 +49,93 @@
       </div>
     </div>
   </header>
-  <!-- card-header end// -->
-  <div class="row">
 
-    <!-- col.// -->
+  <!-- Products Grid -->
+  <div class="row g-4">
+
     {{#each products}}
-      <div class="col">
-        <div class="card card-user">
-          <div class="card-header">
-            <img
-              class="img-md img-avatar"
-              src={{this.thumbnail}}
-              alt="Book image"
-            />
-          </div>
-          <div class="card-body">
+    <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="card h-100 card-user">
 
-            <!-- name -->
-            <span>
-              <h5 class="card-title mt-50">{{this.productName}}</h5>
+        <!-- Image (FIXED HEIGHT – NO OVERLAP) -->
+        <div
+          class="card-header bg-white d-flex align-items-center justify-content-center"
+          style="height: 200px;"
+        >
+          <img
+            src="{{this.thumbnail}}"
+            alt="Product Image"
+            class="img-fluid"
+            style="max-height:160px; max-width:100%; object-fit:contain;"
+          />
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body d-flex flex-column">
+
+          <!-- Product Name -->
+          <h6 class="card-title text-center fw-bold mb-1">
+            {{this.productName}}
+          </h6>
+
+          <!-- Brand & Category -->
+          <p class="text-center mb-1" style="font-size:12px;">
+            <span class="fw-semibold text-danger">{{this.brand}}</span>
+            ·
+            <span class="text-muted">{{this.category}}</span>
+          </p>
+
+          <!-- Short Description -->
+          <p
+            class="text-muted text-center mb-2 text-clamp-2"
+            style="font-size:11px; line-height:1.3;"
+          >
+            {{this.shortDescription}}
+          </p>
+
+          <!-- Rating -->
+          <p class="text-center mb-2" style="font-size:12px;">
+            ⭐ <strong>{{this.rating}}</strong> / 5
+          </p>
+
+          <!-- Price -->
+          <div class="text-center mt-auto mb-2">
+            <span class="fw-bold text-success">
+              ₹{{this.discountPrice}}
             </span>
-            <div class="card-text" style="text-align: left;">
+            <span class="text-muted text-decoration-line-through ms-1">
+              ₹{{this.price}}
+            </span>
+          </div>
 
-              <!-- brand -->
-              <p style="margin: 0;">
-                <span style="font-weight: 800; color:#ba0e0e;">brand:</span>
-                {{this.brand}}
-              </p>
+          <!-- Action Buttons -->
+          <div class="d-flex gap-2">
+            <a
+              href="/admin/product/edit/{{this._id}}"
+              class="btn btn-sm btn-brand w-50"
+            >
+              <i class="material-icons md-edit"></i> Edit
+            </a>
 
-              <!-- Category -->
-              <p style="margin: 2px 0 6px 0;">
-                <span style="font-weight: 800; color:#db3e3e;">Category:</span>
-                {{this.category}}
-              </p>
-
-              <!-- Fragrance Type -->
-              <p style="margin: 2px 0 6px 0;">
-                <span style="font-weight: 800; color:#db3e3e;">Fragrance Type:</span>
-                {{this.fragranceType}}
-              </p>
-
-              <!-- Stock -->
-              <p style="margin: 4px 0;">
-                <span style="font-weight: 800; color:#ff9800;">Stock:</span>
-                {{this.stock}}
-              </p>
-
-              <!-- Rating -->
-              <p style="margin: 0;">
-                ⭐
-                <span style="font-weight: 600;">{{this.rating}}</span>
-                / 5
-              </p>
-
-            </div>
-
-            <!-- Price Section -->
-            <div style="margin: 8px 0;">
-              <span style="font-weight: 700; color:#28a745; font-size:1rem;">
-                ₹{{this.discountPrice}}
-              </span>
-              <span
-                style="text-decoration: line-through; color:#999; margin-left: 6px;"
+            <form
+              action="/admin/product/{{this._id}}/delete"
+              method="POST"
+              class="w-50"
+            >
+              <button
+                type="submit"
+                class="btn btn-sm btn-light w-100"
               >
-                ₹{{this.price}}
-              </span>
-            </div>
-            <!-- Button -->
-            <div class="mt-20 d-flex" style="gap: 12px;">
-              <a
-                href="/admin/product/edit/{{this._id}}"
-                class="btn btn-sm font-sm rounded btn-brand"
-              >
-                <i class="material-icons md-edit"></i>
-                Edit
-              </a>
-
-
-              <form
-                action="/admin/product/{{this._id}}/delete"
-                method="POST"
-                style="display:inline-block"
-              >
-                <button
-                  type="submit"
-                  class="btn btn-sm font-sm btn-light rounded"
-                >
-                  <i class="material-icons md-delete_forever"></i>
-                  Delete
-                </button>
-              </form>
-            </div>
-
+                <i class="material-icons md-delete_forever"></i> Delete
+              </button>
+            </form>
           </div>
 
         </div>
       </div>
-
+    </div>
     {{/each}}
-    <!-- col.// -->
 
-    <!-- col.// -->
   </div>
-  <!-- row.// -->
-  {{! <div class="pagination-area mt-15 mb-50">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-start">
-        <li class="page-item active">
-          <a class="page-link" href="#">01</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">02</a></li>
-        <li class="page-item"><a class="page-link" href="#">03</a></li>
-        <li class="page-item">
-          <a class="page-link dot" href="#">...</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">16</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#"><i
-              class="material-icons md-chevron_right"
-            ></i></a>
-        </li>
-      </ul>
-    </nav>
-  </div> }}
 </section>
+ 

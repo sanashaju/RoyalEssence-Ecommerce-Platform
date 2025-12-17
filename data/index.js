@@ -15,7 +15,7 @@ export const bannerData = [
     highlight: "Timeless Classics",
     description: "Handpicked signature scents loved for their rich aroma and sophistication.",
     link: "/shop",
-    image: "/userAssets/imgs/slider/bnr1.jpg",
+    image: "/userAssets/imgs/slider/bnr4.jpg",
   },
   {
     id: 3,
@@ -42,7 +42,7 @@ export const bannerData = [
     highlight: "Floral • Woody • Oriental",
     description: "Find your signature fragrance for every occasion and every season.",
     link: "/shop",
-    image: "/userAssets/imgs/bannerImg/bnr-1.jpg",
+    image: "/userAssets/imgs/slider/bnr5.jpg",
   },
 ];
 
