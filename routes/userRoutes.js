@@ -1,8 +1,22 @@
 import express from "express";
-import { landingPage } from "../controllers/userController.js";
+import { accountDetailsPage, landingPage, loginPage, signupPage } from "../controllers/userController.js";
+import { login, logOut, signup } from "../controllers/authController.js";
 
 const userRoutes = express.Router({ mergeParams: true });
 
-userRoutes.get("/", landingPage);
+userRoutes.get("/", landingPage); 
+
+userRoutes.get("/login", loginPage); 
+
+userRoutes.get("/signup", signupPage);
+
+userRoutes.post("/signup", signup);
+
+userRoutes.post("/login", login);
+
+userRoutes.get("/logout", logOut);
+
+userRoutes.get("/account-details", accountDetailsPage);
+
 
 export default userRoutes;

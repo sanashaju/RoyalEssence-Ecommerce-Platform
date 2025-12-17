@@ -1,6 +1,8 @@
+import jwt from "jsonwebtoken";
+import collection from "../config/collection.js";
+import connectDB from "../config/db.js";
 import { bannerData, fragranceTypesData, brandsData } from "../data/index.js";
 import { getProductsData } from "./productController.js";
-import jwt from "jsonwebtoken";
 
 export const landingPage = async (req, res) => {
   console.log("🚀 landingPage function called");
@@ -44,8 +46,8 @@ export const landingPage = async (req, res) => {
       brands: brandsData,
       fragranceTypes: fragranceTypesData,
       featuredProducts: withStockStatus(featuredProducts),
-      menProducts: withStockStatus(latestMen),
-      womenProducts: withStockStatus(latestWomen),
+      latestMen: withStockStatus(latestMen),
+      latestWomen: withStockStatus(latestWomen),
       newArrivals: withStockStatus(newArrivals),
     });
   } catch (error) {
@@ -53,3 +55,58 @@ export const landingPage = async (req, res) => {
     res.status(500).render("error/500");
   }
 };
+
+export const loginPage = (req, res) => {
+  console.log("🚀 loginPage function called");
+  try {
+    res.render("user/loginPage", {
+      title: "Login - Royal Essence",
+    });
+  } catch (error) {
+    console.error("❌ Login page error:", error);
+    res.status(500).render("error/500");
+  }
+};
+
+export const signupPage = (req, res) => {
+  console.log("🚀 signupPage function called");
+  try {
+    res.render("user/signupPage", {
+      title: "Signup - Royal Essence",
+    });
+  } catch (error) {
+    console.error("❌ Signup page error:", error);
+    res.status(500).render("error/500");
+  }
+};
+
+export const accountDetailsPage = async (req, res) => {
+  try {
+    const token = req.cookies?.token;
+    if (!token) return res.redirect("/login");
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    const db = await connectDB();
+
+    const user = await db
+      .collection(collection.USERS_COLLECTION)
+      .findOne({ userId: decoded.id });
+
+    if (!user) return res.redirect("/login");
+
+    // ❌ remove password before sending
+    delete user.password;
+    console.log("user Data ><><><><>",user)
+
+    res.render("user/accountDetails", {
+      title: "Account Details - Royal Essence",
+      user,
+    });
+
+  } catch (error) {
+    console.error("Account details error:", error);
+    res.redirect("/login");
+  }
+};
+
