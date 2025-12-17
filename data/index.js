@@ -6,7 +6,7 @@ export const bannerData = [
     highlight: "Trending Scents 2025",
     description: "Discover the latest luxury perfumes crafted for elegance and lasting impressions.",
     link: "/shop",
-    image: "/userAssets/imgs/bannerImg/bnr-5.jpg",
+    image: "/userAssets/imgs/banner/banner_1.jpg",
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const bannerData = [
     highlight: "Timeless Classics",
     description: "Handpicked signature scents loved for their rich aroma and sophistication.",
     link: "/shop",
-    image: "/userAssets/imgs/bannerImg/bnr-4.jpg",
+    image: "/userAssets/imgs/slider/bnr1.jpg",
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const bannerData = [
     highlight: "Top Perfume Collections",
     description: "Save big on best-selling perfumes for men & women. Limited time only!",
     link: "/shop",
-    image: "/userAssets/imgs/bannerImg/bnr-3.jpg",
+    image: "/userAssets/imgs/slider/bnr2.jpg",
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const bannerData = [
     highlight: "New & Trending",
     description: "Explore newly launched perfumes across floral, woody, oriental, and fresh notes.",
     link: "/shop",
-    image: "/userAssets/imgs/bannerImg/bnr-2.jpg",
+    image: "/userAssets/imgs/slider/bnr3.jpg",
   },
   {
     id: 5,
