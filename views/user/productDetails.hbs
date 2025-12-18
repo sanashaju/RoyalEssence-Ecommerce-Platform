@@ -54,10 +54,12 @@
                 </div>
                 <div class="clearfix product-price-cover">
                   <div class="product-price primary-color float-left">
-                    <ins><span class="text-brand">$120.00</span></ins>
+                    <ins><span
+                        class="text-brand"
+                      >₹{{product.discountPrice}}</span></ins>
                     <ins><span
                         class="old-price font-md ml-15"
-                      >$200.00</span></ins>
+                      >₹{{product.price}}</span></ins>
 
                   </div>
                 </div>
@@ -80,14 +82,14 @@
                 <div class="attr-detail attr-size">
                   <strong class="mr-10">Volume</strong>
                   <ul class="list-filter size-filter font-small">
-                    <li><a href="#">50 ML</a></li>
+                    <li><a href="#">{{product.volume}} </a></li>
                   </ul>
                 </div>
                 <div class="bt-1 border-color-1 mt-30 mb-30"></div>
                 <div class="attr-detail attr-size">
                   <strong class="mr-10">Fragrance Type</strong>
                   <ul class="list-filter size-filter font-small">
-                    <li><a href="#">Woody</a></li>
+                    <li><a href="#">{{product.fragranceType}}</a></li>
                   </ul>
                 </div>
 
@@ -128,13 +130,13 @@
                 </div>
                 <ul class="product-meta font-xs color-grey mt-50">
 
-                  <li class="mb-5">Tags:
+                  {{! <li class="mb-5">Tags:
                     <a href="#" rel="tag">Perfume</a>,
                     <a href="#" rel="tag">Women</a>,
                     <a href="#" rel="tag">Men</a>
                   </li>
                   <li>Availability:<span class="in-stock text-success ml-5">8
-                      Items In Stock</span></li>
+                      Items In Stock</span></li> }}
                 </ul>
               </div>
               <!-- Detail Info -->
@@ -144,24 +146,14 @@
             <div class="col-lg-10 m-auto entry-main-content">
               <h2 class="section-title style-1 mb-30">Description</h2>
               <div class="description mb-50">
-                <p>Uninhibited carnally hired played in whimpered dear gorilla
-                  koala depending and much yikes off far quetzal goodness and
-                  from for grimaced goodness unaccountably and meadowlark near
-                  unblushingly crucial scallop tightly neurotic hungrily some
-                  and dear furiously this apart.</p>
-                <p>Spluttered narrowly yikes left moth in yikes bowed this that
-                  grizzly much hello on spoon-fed that alas rethought much
-                  decently richly and wow against the frequent fluidly at
-                  formidable acceptably flapped besides and much circa far over
-                  the bucolically hey precarious goldfinch mastodon goodness
-                  gnashed a jellyfish and one however because.
+                <p>{{product.fullDescription}}
                 </p>
                 <ul class="product-more-infor mt-30">
                   <li><span>Type Of Packing</span> Bottle</li>
-                  <li><span>Color</span> Green, Pink, Powder Blue, Purple</li>
-                  <li><span>Quantity Per Case</span> 100ml</li>
-                  <li><span>Ethyl Alcohol</span> 70%</li>
-                  <li><span>Piece In One</span> Carton</li>
+                  {{! <li><span>Color</span> Green, Pink, Powder Blue, Purple</li> }}
+                  <li><span>Quantity Per Case</span> {{product.volume}}</li>
+                  {{! <li><span>Ethyl Alcohol</span> 70%</li>
+                  <li><span>Piece In One</span> Carton</li> }}
                 </ul>
                 <hr class="wp-block-separator is-style-dots" />
 
@@ -243,7 +235,7 @@
               </div>
             </div>
           </div>
-          <div class="banner-img banner-big wow fadeIn f-none animated mt-50">
+          {{! <div class="banner-img banner-big wow fadeIn f-none animated mt-50">
             <img
               class="border-radius-10"
               src="/userAssets/imgs/banner/banner-4.png"
@@ -254,7 +246,7 @@
               <h2 class="fw-600 mb-20">We're an Apple
                 <br />Authorised Service Provider</h2>
             </div>
-          </div>
+          </div> }}
         </div>
       </div>
     </div>

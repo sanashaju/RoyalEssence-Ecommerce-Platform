@@ -133,7 +133,7 @@ export const brandsData = [
 export const fragranceTypesData = [
   {
     name: "Fresh / Citrus",
-    image: "/userAssets/imgs/fragranceTypes/fresh&citrus.png",
+    image: "/userAssets/imgs/fragranceTypes/fresh-citrus.png",
     link: "/shop",
   },
   {
@@ -143,7 +143,7 @@ export const fragranceTypesData = [
   },
   {
     name: "Oriental / Spicy",
-    image: "/userAssets/imgs/fragranceTypes/oriental&Spicy.png",
+    image: "/userAssets/imgs/fragranceTypes/oriental-spicy.png",
     link: "/shop",
   },
   {
