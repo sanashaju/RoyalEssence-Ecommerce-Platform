@@ -888,6 +888,7 @@
       </div>
     </div>
   </section>
+  
   <section class="bg-grey-9 section-padding">
     <div class="container pt-25 pb-25">
 
@@ -926,93 +927,98 @@
         </div>
 
         <!-- Products -->
-        <div class="col-lg-9 col-md-12">
-          <div
-            class="carausel-4-columns-cover arrow-center position-relative wow fadeIn animated"
-          >
+      <div class="col-lg-9 col-md-12">
+  <div
+    class="carausel-4-columns-cover arrow-center position-relative wow fadeIn animated"
+  >
 
-            <div
-              class="slider-arrow slider-arrow-2 carausel-4-columns-arrow"
-              id="new-arrivals-arrows"
-            ></div>
+    <div
+      class="slider-arrow slider-arrow-2 carausel-4-columns-arrow"
+      id="new-arrivals-arrows"
+    ></div>
 
-            <div
-              class="carausel-4-columns carausel-arrow-center"
-              id="new-arrivals-carousel"
+    <div
+      class="carausel-4-columns carausel-arrow-center"
+      id="new-arrivals-carousel"
+    >
+
+      {{#each newArrivals}}
+      <!-- Product Item -->
+      <div class="product-cart-wrap">
+        <div class="product-img-action-wrap">
+          <div class="product-img product-img-zoom">
+            <a href="/product/{{this._id}}">
+              <img
+                class="default-img"
+                src="{{this.images.[0]}}"
+                alt="{{this.name}}"
+              />
+              <img
+                class="hover-img"
+                src="{{this.images.[1]}}"
+                alt="{{this.name}} Hover"
+              />
+            </a>
+          </div>
+
+          <div class="product-action-1">
+            <a
+              class="action-btn small hover-up"
+              data-bs-toggle="modal"
+              data-bs-target="#quickViewModal"
             >
+              <i class="fi-rs-eye"></i>
+            </a>
+            <a class="action-btn small hover-up" href="/wishlist">
+              <i class="fi-rs-heart"></i>
+            </a>
+            <a class="action-btn small hover-up" href="/compare">
+              <i class="fi-rs-shuffle"></i>
+            </a>
+          </div>
 
-              <!-- Product Item -->
-              <div class="product-cart-wrap">
-                <div class="product-img-action-wrap">
-                  <div class="product-img product-img-zoom">
-                    <a href="/product">
-                      <img
-                        class="default-img"
-                        src="/userAssets/imgs/shop/product-1-1.jpg"
-                        alt="Perfume"
-                      />
-                      <img
-                        class="hover-img"
-                        src="/userAssets/imgs/shop/product-1-2.jpg"
-                        alt="Perfume Hover"
-                      />
-                    </a>
-                  </div>
-
-                  <div class="product-action-1">
-                    <a
-                      class="action-btn small hover-up"
-                      data-bs-toggle="modal"
-                      data-bs-target="#quickViewModal"
-                    >
-                      <i class="fi-rs-eye"></i>
-                    </a>
-                    <a class="action-btn small hover-up" href="/wishlist">
-                      <i class="fi-rs-heart"></i>
-                    </a>
-                    <a class="action-btn small hover-up" href="/compare">
-                      <i class="fi-rs-shuffle"></i>
-                    </a>
-                  </div>
-
-                  <div
-                    class="product-badges product-badges-position product-badges-mrg"
-                  >
-                    <span class="new">New</span>
-                  </div>
-                </div>
-
-                <div class="product-content-wrap">
-                  <div class="product-category">
-                    <a href="/shop">Floral</a>
-                  </div>
-
-                  <h2>
-                    <a href="/product">Rose Essence Eau De Parfum</a>
-                  </h2>
-
-                  <div class="rating-result" title="90%">
-                    <span><span>90%</span></span>
-                  </div>
-
-                  <div class="product-price">
-                    <span>₹3,499</span>
-                    <span class="old-price">₹3,999</span>
-                  </div>
-
-                  <div class="product-action-1 show">
-                    <a class="action-btn hover-up" href="/cart">
-                      <i class="fi-rs-shopping-bag-add"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Duplicate product-cart-wrap for more perfumes -->
-
-            </div>
+          <div
+            class="product-badges product-badges-position product-badges-mrg"
+          >
+            {{#if this.isNew}}
+              <span class="new">New</span>
+            {{/if}}
           </div>
         </div>
+
+        <div class="product-content-wrap">
+          <div class="product-category">
+            <a href="/shop">{{this.category}}</a>
+          </div>
+
+          <h2>
+            <a href="/product/{{this._id}}">{{this.name}}</a>
+          </h2>
+
+          <div class="rating-result" title="{{this.rating}}%">
+            <span><span>{{this.rating}}%</span></span>
+          </div>
+
+          <div class="product-price">
+            <span>₹{{this.price}}</span>
+            {{#if this.oldPrice}}
+              <span class="old-price">₹{{this.oldPrice}}</span>
+            {{/if}}
+          </div>
+
+          <div class="product-action-1 show">
+            <a class="action-btn hover-up" href="/cart/{{this._id}}">
+              <i class="fi-rs-shopping-bag-add"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+
+    </div>
+  </div>
+</div>
+
 
       </div>
     </div>

@@ -15,7 +15,7 @@ export const bannerData = [
     highlight: "Timeless Classics",
     description: "Handpicked signature scents loved for their rich aroma and sophistication.",
     link: "/shop",
-    image: "/userAssets/imgs/slider/bnr4.jpg",
+    image: "/userAssets/imgs/slider/bnr2.jpg",
   },
   {
     id: 3,
@@ -24,7 +24,7 @@ export const bannerData = [
     highlight: "Top Perfume Collections",
     description: "Save big on best-selling perfumes for men & women. Limited time only!",
     link: "/shop",
-    image: "/userAssets/imgs/slider/bnr2.jpg",
+    image: "/userAssets/imgs/slider/bnr3.jpg",
   },
   {
     id: 4,
@@ -33,7 +33,7 @@ export const bannerData = [
     highlight: "New & Trending",
     description: "Explore newly launched perfumes across floral, woody, oriental, and fresh notes.",
     link: "/shop",
-    image: "/userAssets/imgs/slider/bnr3.jpg",
+    image: "/userAssets/imgs/slider/bnr4.jpg",
   },
   {
     id: 5,
@@ -133,7 +133,7 @@ export const brandsData = [
 export const fragranceTypesData = [
   {
     name: "Fresh / Citrus",
-    image: "/userAssets/imgs/fragranceTypes/citrus.png",
+    image: "/userAssets/imgs/fragranceTypes/fresh&citrus.png",
     link: "/shop",
   },
   {
@@ -143,12 +143,12 @@ export const fragranceTypesData = [
   },
   {
     name: "Oriental / Spicy",
-    image: "/userAssets/imgs/fragranceTypes/oriental-spicy.png",
+    image: "/userAssets/imgs/fragranceTypes/oriental&Spicy.png",
     link: "/shop",
   },
   {
     name: "Aromatic / Herbal",
-    image: "/userAssets/imgs/fragranceTypes/aromatic.png",
+    image: "/userAssets/imgs/fragranceTypes/aromatic-herbal.jpg",
     link: "/shop",
   },
   {
