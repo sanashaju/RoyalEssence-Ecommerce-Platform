@@ -139,7 +139,7 @@
               <div class="product-cart-wrap mb-30">
                 <div class="product-img-action-wrap">
                   <div class="product-img product-img-zoom">
-                    <a href="shop-product-right.html">
+                    <a href="/productDetails?id={{this.productId}}">
                       <img
                         class="default-img"
                         src="{{this.images.[0]}}"
@@ -153,22 +153,22 @@
                     </a>
                   </div>
                   <div class="product-action-1">
-                    <a
+                    {{!-- <a
                       aria-label="Quick view"
                       class="action-btn hover-up"
                       data-bs-toggle="modal"
                       data-bs-target="#quickViewModal"
-                    ><i class="fi-rs-eye"></i></a>
+                    ><i class="fi-rs-eye"></i></a> --}}
                     <a
                       aria-label="Add To Wishlist"
                       class="action-btn hover-up"
                       href="shop-wishlist.html"
                     ><i class="fi-rs-heart"></i></a>
-                    <a
+                    {{!-- <a
                       aria-label="Compare"
                       class="action-btn hover-up"
                       href="shop-compare.html"
-                    ><i class="fi-rs-shuffle"></i></a>
+                    ><i class="fi-rs-shuffle"></i></a> --}}
                   </div>
                   <div
                     class="product-badges product-badges-position product-badges-mrg"
@@ -217,36 +217,36 @@
               <div class="product-cart-wrap mb-30">
                 <div class="product-img-action-wrap">
                   <div class="product-img product-img-zoom">
-                    <a href="{{this.images.[0]}}">
+                    <a href="shop-product-right.html">
                       <img
                         class="default-img"
-                        src="{{this.images.[1]}}"
+                        src="{{this.images.[0]}}"
                         alt=""
                       />
                       <img
                         class="hover-img"
-                        src="/userAssets/imgs/shop/product-9-2.jpg"
+                        src="{{this.images.[1]}}"
                         alt=""
                       />
                     </a>
                   </div>
                   <div class="product-action-1">
-                    <a
+                    {{!-- <a
                       aria-label="Quick view"
                       class="action-btn hover-up"
                       data-bs-toggle="modal"
                       data-bs-target="#quickViewModal"
-                    ><i class="fi-rs-eye"></i></a>
+                    ><i class="fi-rs-eye"></i></a> --}}
                     <a
                       aria-label="Add To Wishlist"
                       class="action-btn hover-up"
                       href="shop-wishlist.html"
                     ><i class="fi-rs-heart"></i></a>
-                    <a
+                    {{!-- <a
                       aria-label="Compare"
                       class="action-btn hover-up"
                       href="shop-compare.html"
-                    ><i class="fi-rs-shuffle"></i></a>
+                    ><i class="fi-rs-shuffle"></i></a> --}}
                   </div>
                   <div
                     class="product-badges product-badges-position product-badges-mrg"
@@ -309,12 +309,12 @@
                     </a>
                   </div>
                   <div class="product-action-1">
-                    <a
+                    {{!-- <a
                       aria-label="Quick view"
                       class="action-btn hover-up"
                       data-bs-toggle="modal"
                       data-bs-target="#quickViewModal"
-                    ><i class="fi-rs-eye"></i></a>
+                    ><i class="fi-rs-eye"></i></a> --}}
                     <a
                       aria-label="Add To Wishlist"
                       class="action-btn hover-up"
@@ -813,7 +813,7 @@
         <div class="col-lg-6 deal-co">
           <div
             class="deal wow fadeIn animated mb-md-4 mb-sm-4 mb-lg-0"
-            style="background-image: url('/userAssets/imgs/banner/menu-banner-7.jpg');"
+            style="background-image: url('/userAssets/imgs/banner/bnr1.jpg');"
           >
             <div class="deal-top">
               <h2 class="text-brand">Deal of the Day</h2>
@@ -821,7 +821,7 @@
             </div>
             <div class="deal-content">
               <h6 class="product-title"><a href="shop-product-right.html">Summer
-                  Collection New Morden Design</a></h6>
+                  Collection </a></h6>
               <div class="product-price"><span
                   class="new-price"
                 >$139.00</span><span class="old-price">$160.99</span></div>
@@ -840,11 +840,11 @@
         <div class="col-lg-6 deal-co">
           <div
             class="deal wow fadeIn animated"
-            style="background-image: url('/userAssets/imgs/banner/menu-banner-8.jpg');"
+            style="background-image: url('/userAssets/imgs/banner/bnr8.jpg');"
           >
             <div class="deal-top">
-              <h2 class="text-brand">Men Clothing</h2>
-              <h5>Shirt & Bag</h5>
+              <h2 class="text-brand">Womens Collections</h2>
+              <h5>Perfumes</h5>
             </div>
             <div class="deal-content">
               <h6 class="product-title"><a href="shop-product-right.html">Try
@@ -908,7 +908,7 @@
         <div class="col-lg-3 d-none d-lg-flex">
           <div class="banner-img style-2 wow fadeIn animated">
             <img
-              src="/userAssets/imgs/banner/banner-9.jpg"
+              src="/userAssets/imgs/slider/bnr7.jpg"
               alt="Perfume Banner"
             />
             <div class="banner-text">
@@ -927,98 +927,94 @@
         </div>
 
         <!-- Products -->
-      <div class="col-lg-9 col-md-12">
-  <div
-    class="carausel-4-columns-cover arrow-center position-relative wow fadeIn animated"
-  >
-
-    <div
-      class="slider-arrow slider-arrow-2 carausel-4-columns-arrow"
-      id="new-arrivals-arrows"
-    ></div>
-
-    <div
-      class="carausel-4-columns carausel-arrow-center"
-      id="new-arrivals-carousel"
-    >
-
-      {{#each newArrivals}}
-      <!-- Product Item -->
-      <div class="product-cart-wrap">
-        <div class="product-img-action-wrap">
-          <div class="product-img product-img-zoom">
-            <a href="/product/{{this._id}}">
-              <img
-                class="default-img"
-                src="{{this.images.[0]}}"
-                alt="{{this.name}}"
-              />
-              <img
-                class="hover-img"
-                src="{{this.images.[1]}}"
-                alt="{{this.name}} Hover"
-              />
-            </a>
-          </div>
-
-          <div class="product-action-1">
-            <a
-              class="action-btn small hover-up"
-              data-bs-toggle="modal"
-              data-bs-target="#quickViewModal"
-            >
-              <i class="fi-rs-eye"></i>
-            </a>
-            <a class="action-btn small hover-up" href="/wishlist">
-              <i class="fi-rs-heart"></i>
-            </a>
-            <a class="action-btn small hover-up" href="/compare">
-              <i class="fi-rs-shuffle"></i>
-            </a>
-          </div>
-
+        <div class="col-lg-9 col-md-12">
           <div
-            class="product-badges product-badges-position product-badges-mrg"
+            class="carausel-4-columns-cover arrow-center position-relative wow fadeIn animated"
           >
-            {{#if this.isNew}}
-              <span class="new">New</span>
-            {{/if}}
+
+            <div
+              class="slider-arrow slider-arrow-2 carausel-4-columns-arrow"
+              id="new-arrivals-arrows"
+            ></div>
+
+            <div
+              class="carausel-4-columns carausel-arrow-center"
+              id="new-arrivals-carousel"
+            >
+
+              <!-- Product Item -->
+              {{#each newArrivals}}
+              <div class="product-cart-wrap">
+                <div class="product-img-action-wrap">
+                  <div class="product-img product-img-zoom">
+                    <a href="/product">
+                      <img
+                        class="default-img"
+                        src="{{this.images.[0]}}"
+                        alt="Perfume"
+                      />
+                      <img
+                        class="hover-img"
+                        src="{{this.images.[1]}}"
+                        alt="Perfume Hover"
+                      />
+                    </a>
+                  </div>
+
+                  <div class="product-action-1">
+                    <a
+                      class="action-btn small hover-up"
+                      data-bs-toggle="modal"
+                      data-bs-target="#quickViewModal"
+                    >
+                      <i class="fi-rs-eye"></i>
+                    </a>
+                    <a class="action-btn small hover-up" href="/wishlist">
+                      <i class="fi-rs-heart"></i>
+                    </a>
+                    <a class="action-btn small hover-up" href="/compare">
+                      <i class="fi-rs-shuffle"></i>
+                    </a>
+                  </div>
+
+                  <div
+                    class="product-badges product-badges-position product-badges-mrg"
+                  >
+                    <span class="new">{{this.category}}</span>
+                  </div>
+                </div>
+
+                <div class="product-content-wrap">
+                  <div class="product-category">
+                    <a href="/shop">{{this.brand}}</a>
+                  </div>
+
+                  <h2>
+                    <a href="/product">{{this.productName}}</a>
+                  </h2>
+
+                  <div class="rating-result" title="90%">
+                    <span><span>90%</span></span>
+                  </div>
+
+                  <div class="product-price">
+                    <span>{{this.discountPrice}}</span>
+                    <span class="old-price">{{this.price}}</span>
+                  </div>
+
+                  <div class="product-action-1 show">
+                    <a class="action-btn hover-up" href="/cart">
+                      <i class="fi-rs-shopping-bag-add"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+              <!-- Duplicate product-cart-wrap for more perfumes -->
+
+            </div>
           </div>
         </div>
-
-        <div class="product-content-wrap">
-          <div class="product-category">
-            <a href="/shop">{{this.category}}</a>
-          </div>
-
-          <h2>
-            <a href="/product/{{this._id}}">{{this.name}}</a>
-          </h2>
-
-          <div class="rating-result" title="{{this.rating}}%">
-            <span><span>{{this.rating}}%</span></span>
-          </div>
-
-          <div class="product-price">
-            <span>₹{{this.price}}</span>
-            {{#if this.oldPrice}}
-              <span class="old-price">₹{{this.oldPrice}}</span>
-            {{/if}}
-          </div>
-
-          <div class="product-action-1 show">
-            <a class="action-btn hover-up" href="/cart/{{this._id}}">
-              <i class="fi-rs-shopping-bag-add"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      {{/each}}
-
-    </div>
-  </div>
-</div>
-
 
       </div>
     </div>

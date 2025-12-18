@@ -50,6 +50,7 @@ export const landingPage = async (req, res) => {
       latestWomen: withStockStatus(latestWomen),
       newArrivals: withStockStatus(newArrivals),
     });
+    console.log(">>>>>>>>/////", fragranceTypesData);
   } catch (error) {
     console.error("❌ Landing page error:", error);
     res.status(500).render("error/500");
@@ -97,16 +98,60 @@ export const accountDetailsPage = async (req, res) => {
 
     // ❌ remove password before sending
     delete user.password;
-    console.log("user Data ><><><><>",user)
+    console.log("user Data ><><><><>", user);
 
     res.render("user/accountDetails", {
       title: "Account Details - Royal Essence",
       user,
     });
-
   } catch (error) {
     console.error("Account details error:", error);
     res.redirect("/login");
   }
 };
 
+export const productDeatilsPage = async (req, res) => {
+  try {
+    const { id } = req.query;
+    if (!id) return res.status(400).send("Product ID is required");
+
+    const db = await connectDB();
+
+    const productData = await db
+      .collection(collection.PRODUCTS_COLLECTION)
+      .findOne({ productId: id });
+
+    if (!productData) return res.status(404).send("Product not found");
+
+    const getStockStatus = (stock) => {
+      if (stock > 20) return `🟢 Available (${stock})`;
+      if (stock > 0) return `🟠 Hurry up! Only ${stock} left`;
+      return `🔴 Currently unavailable`;
+    };
+
+    // Main product stock status
+    productData.stockStatus = getStockStatus(productData.stock);
+
+    const relatedProducts = await getProductsData({
+      category: productData.category,
+      limit: 4,
+    });
+
+    // Related products stock status
+    const updatedRelatedProducts = relatedProducts.map((product) => ({
+      ...product,
+      stockStatus: getStockStatus(product.stock),
+    }));
+    console.log("productData>>>", productData);
+    console.log("updatedRelatedProducts >>>>", updatedRelatedProducts);
+
+    res.render("user/productDetails", {
+      title: "Product Details - Royal Essence",
+      product: productData,
+      relatedProducts: updatedRelatedProducts,
+    });
+  } catch (error) {
+    console.error("❌ Product details page error:", error);
+    res.status(500).render("error/500");
+  }
+};
