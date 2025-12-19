@@ -88,6 +88,9 @@ app.engine(
       gt: function (a, b) {
         return a > b;
       },
+      le: function (a, b) {
+        return a <= b;
+      },
     },
   })
 );

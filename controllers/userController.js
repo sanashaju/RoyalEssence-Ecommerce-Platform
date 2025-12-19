@@ -155,3 +155,181 @@ export const productDeatilsPage = async (req, res) => {
     res.status(500).render("error/500");
   }
 };
+
+export const cartPage = async (req, res) => {
+  // console.log(">>>>>>>>>>cartpage");
+  try {
+    const userId = req.loggedInUser?.id; // FIXED
+    // console.log(">>>>userId",userId)
+    const db = await connectDB();
+
+    const user = await db
+      .collection(collection.USERS_COLLECTION)
+      .findOne({ userId });
+    if (!user) return res.status(404).send("User not found"); // FIXED
+    // console.log(">>>user",user)
+
+    const userCart = user?.cart || [];
+    // console.log(">>>>usercart",userCart)
+
+    const subtotal = userCart.reduce((acc, item) => acc + item.total, 0);
+
+    res.render("user/cartPage", {
+      title: "Your Cart",
+      userCart,
+      subtotal,
+    });
+  } catch (error) {
+    res.send("Something went wrong",error);
+    console.log(error)
+  }
+};
+
+
+export const addToCart = async (req, res) => {
+  try {
+    const userId = req.loggedInUser?.id;
+    const { productId } = req.body;
+
+    if (!userId) return res.redirect("/login");
+    if (!productId) return res.status(400).send("Product ID required");
+
+    const db = await connectDB();
+
+    /* ---------------- FETCH PRODUCT ---------------- */
+    const product = await db
+      .collection(collection.PRODUCTS_COLLECTION)
+      .findOne({ productId });
+
+    if (!product) return res.status(404).send("Product not found");
+
+    const stock = Number(product.stock);
+    const price = Number(product.discountPrice ?? product.price);
+
+    /* ---------------- CHECK CART ITEM ---------------- */
+    const user = await db
+      .collection(collection.USERS_COLLECTION)
+      .findOne(
+        { userId, "cart.productId": productId },
+        { projection: { "cart.$": 1 } }
+      );
+
+    const currentQty = user?.cart?.[0]?.quantity || 0;
+
+    if (currentQty + 1 > stock) {
+      return res.redirect("/cart?error=out_of_stock");
+    }
+
+    /* ---------------- UPDATE CART ---------------- */
+    if (currentQty > 0) {
+      await db.collection(collection.USERS_COLLECTION).updateOne(
+        { userId, "cart.productId": productId },
+        {
+          $inc: { "cart.$.quantity": 1 },
+          $set: {
+            "cart.$.total": (currentQty + 1) * price,
+          },
+        }
+      );
+    } else {
+      await db.collection(collection.USERS_COLLECTION).updateOne(
+        { userId },
+        {
+          $push: {
+            cart: {
+              productId: product.productId,
+              productName: product.productName,
+              price,
+              quantity: 1,
+              total: price,
+              image: product.thumbnail || "/img/default.png",
+              addedAt: new Date(),
+            },
+          },
+        }
+      );
+    }
+
+    res.redirect("/cart");
+  } catch (error) {
+    console.error("Add to cart error:", error);
+    res.redirect("/cart");
+  }
+};
+
+
+export const clearCart = async (req, res) => {
+  try {
+    const userId = req.loggedInUser?.id;
+    if (!userId) {
+      return res.redirect("/login");
+    }
+
+    const db = await connectDB();
+
+    // Clear the cart array
+    await db
+      .collection(collection.USERS_COLLECTION)
+      .updateOne({ userId }, { $set: { cart: [] } });
+
+    res.redirect("/cart"); // redirect back to landing page
+  } catch (error) {
+    // console.log("Error clearing cart:", error);
+    res.status(500).send("Something went wrong while clearing the cart");
+  }
+};
+
+export const removeFromCart = async (req, res) => {
+  try {
+    const userId = req.loggedInUser?.id;
+    const { productId } = req.params;
+
+    if (!userId) {
+      return res.redirect("/login");
+    }
+
+    const db = await connectDB();
+
+    // Remove the item from the cart array
+    await db
+      .collection(collection.USERS_COLLECTION)
+      .updateOne({ userId }, { $pull: { cart: { productId: productId } } });
+
+    res.redirect("/cart"); // Redirect back to landing page
+  } catch (error) {
+    // console.log("Error removing item from cart:", error);
+    res.status(500).send("Something went wrong");
+  }
+};
+
+
+export const checkoutPage = async (req, res) => {
+  console.log(">>>>called checkout function")
+  try {
+    const userId = req.loggedInUser?.id;
+    if (!userId) {
+      return res.redirect("/login");
+    }
+
+    const db = await connectDB();
+    const user = await db
+      .collection(collection.USERS_COLLECTION)
+      .findOne({ userId });
+
+    const userCart = user.cart || [];
+    const addresses = user.addresses || []; // ✅ Get saved addresses
+
+    // Calculate total
+    const total = userCart.reduce((acc, item) => acc + item.total, 0);
+
+    res.render("user/checkoutPage", {
+      title: "Checkout",
+      userCart,
+      total,
+      addresses, // ✅ Pass to HBS
+    });
+  } catch (error) {
+    // console.error(error);
+    res.send("Something went wrong");
+  }
+};

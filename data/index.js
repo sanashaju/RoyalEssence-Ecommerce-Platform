@@ -134,37 +134,37 @@ export const fragranceTypesData = [
   {
     name: "Fresh / Citrus",
     image: "/userAssets/imgs/fragranceTypes/fresh-citrus.png",
-    link: "/shop",
+    link: "/perfumes",
   },
   {
     name: "Woody",
     image: "/userAssets/imgs/fragranceTypes/woody.png",
-    link: "/shop",
+    link: "/perfumes",
   },
   {
     name: "Oriental / Spicy",
     image: "/userAssets/imgs/fragranceTypes/oriental-spicy.png",
-    link: "/shop",
+    link: "/perfumes",
   },
   {
     name: "Aromatic / Herbal",
     image: "/userAssets/imgs/fragranceTypes/aromatic-herbal.jpg",
-    link: "/shop",
+    link: "/perfumes",
   },
   {
     name: "Fruity",
     image: "/userAssets/imgs/fragranceTypes/fruity.png",
-    link: "/shop",
+    link: "/perfumes",
   },
   {
     name: "Incense",
     image: "/userAssets/imgs/fragranceTypes/incense.png",
-    link: "/shop",
+    link: "/perfumes",
   },
   {
     name: "Floral",
     image: "/userAssets/imgs/fragranceTypes/floral.png",
-    link: "/shop",
+    link: "/perfumes",
   },
   {
     name: "White Floral",
