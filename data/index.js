@@ -153,42 +153,42 @@ export const fragranceTypesData = [
   },
   {
     name: "Fruity",
-    image: "/userAssets/imgs/fragranceTypes/fruity.png",
+    image: "/userAssets/imgs/fragranceTypes/fruity.jpg",
     link: "/perfumes",
   },
   {
     name: "Incense",
-    image: "/userAssets/imgs/fragranceTypes/incense.png",
+    image: "/userAssets/imgs/fragranceTypes/incense.jpg",
     link: "/perfumes",
   },
   {
     name: "Floral",
-    image: "/userAssets/imgs/fragranceTypes/floral.png",
+    image: "/userAssets/imgs/fragranceTypes/floral.jpg",
     link: "/perfumes",
   },
   {
     name: "White Floral",
-    image: "/userAssets/imgs/fragranceTypes/white-floral.png",
+    image: "/userAssets/imgs/fragranceTypes/white-floral.jpg",
     link: "/shop",
   },
   {
     name: "Gourmand",
-    image: "/userAssets/imgs/fragranceTypes/gourmand.png",
+    image: "/userAssets/imgs/fragranceTypes/gourmand.jpg",
     link: "/shop",
   },
   {
     name: "Oriental / Amber",
-    image: "/userAssets/imgs/fragranceTypes/amber.png",
+    image: "/userAssets/imgs/fragranceTypes/amber.jpg",
     link: "/shop",
   },
   {
     name: "Aquatic / Marine",
-    image: "/userAssets/imgs/fragranceTypes/aquatic.png",
+    image: "/userAssets/imgs/fragranceTypes/aquatic.jpg",
     link: "/shop",
   },
   {
     name: "Floral-Fruity",
-    image: "/userAssets/imgs/fragranceTypes/floral-fruity.png",
+    image: "/userAssets/imgs/fragranceTypes/floral-fruity.jpg",
     link: "/shop",
   },
   {
