@@ -193,17 +193,17 @@ export const fragranceTypesData = [
   },
   {
     name: "Honeyed",
-    image: "/userAssets/imgs/fragranceTypes/honeyed.png",
+    image: "/userAssets/imgs/fragranceTypes/honeyed.jpg",
     link: "/shop",
   },
   {
     name: "Ozonic",
-    image: "/userAssets/imgs/fragranceTypes/ozonic.png",
+    image: "/userAssets/imgs/fragranceTypes/ozonic.jpg",
     link: "/shop",
   },
   {
     name: "Chypre",
-    image: "/userAssets/imgs/fragranceTypes/chypre.png",
+    image: "/userAssets/imgs/fragranceTypes/chypre.jpg",
     link: "/shop",
   },
 ];
