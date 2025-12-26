@@ -114,7 +114,7 @@ export const editProductPage = async (req, res) => {
 export const adminOrdersListPage = async (req, res) => {
   console.log("Admin OrdersList route working 🚀");
   try {
-    const db = await connectDB( );
+    const db = await connectDB();
 
     const ordersCollection = db.collection(collection.ORDERS_COLLECTION);
     const usersCollection = db.collection(collection.USERS_COLLECTION);
