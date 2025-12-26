@@ -174,3 +174,82 @@ export const adminOrdersListPage = async (req, res) => {
       .send("Something went wrong while loading orders for admin.");
   }
 };
+
+
+export const updateOrderStatus = async (req, res) => {
+  try {
+    const db = await connectDB();
+    const ordersCollection = db.collection(collection.ORDERS_COLLECTION);
+
+    const orderId = req.params.id;
+    const newStatus = req.params.status;
+
+    // console.log("🆕 Updating order:", orderId, "➡️", newStatus);
+
+    // Update order status
+    await ordersCollection.updateOne(
+      { _id: new ObjectId(orderId) },
+      { $set: { status: newStatus, updatedAt: new Date() } }
+    );
+
+    // Redirect back to orders list
+    res.redirect("/admin/orders-list");
+  } catch (error) {
+    // console.error("❌ Error updating order status:", error);
+    res.status(500).send("Failed to update order status.");
+  }
+};
+
+
+export const adminOrderDetailsPage = async (req, res) => {
+  // console.log("Admin Order Details route working 🚀");
+  try {
+    const db = await connectDB();
+
+    const orderId = req.params.id;
+    const ordersCollection = db.collection(collection.ORDERS_COLLECTION);
+    const productsCollection = db.collection(collection.PRODUCTS_COLLECTION); // ✅ corrected key
+
+    // Fetch the order by ID
+    const order = await ordersCollection.findOne({
+      _id: new ObjectId(orderId),
+    });
+        // console.log("???????? order", order)
+
+    if (!order) return res.status(404).send("Order not found");
+
+    // Attach product details for each cart item
+    const cartWithProductDetails = await Promise.all(
+      order.userCart.map(async (item) => {
+        const product = await productsCollection.findOne({ productId: item.productId });
+
+        return {
+          ...item,
+          productName: product?.productName,
+          brand: product?.brand,
+          stockStatus: product.stockStatus> 0, 
+          image: product.thumbnail,
+        };
+      })
+    );
+        // console.log("???????? Product", cartWithProductDetails)
+
+    // Calculate total amount
+    const totalAmount = cartWithProductDetails.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    );
+
+    // Render the order details page
+    res.render("admin/order-details", {
+      layout: "admin",
+      title: `Order Details - ${order._id}`,
+      order,
+      UserCart: cartWithProductDetails,
+      totalAmount,
+    });
+  } catch (error) {
+    console.error("Error loading admin order details:", error);
+    res.status(500).send("Something went wrong loading order details.");
+  }
+};
