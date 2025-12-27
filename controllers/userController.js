@@ -52,7 +52,7 @@ export const landingPage = async (req, res) => {
       latestWomen: withStockStatus(latestWomen),
       newArrivals: withStockStatus(newArrivals),
     });
-    console.log(">>>>>>>>/////", fragranceTypesData);
+    // console.log(">>>>>>>>/////", fragranceTypesData);
   } catch (error) {
     console.error("❌ Landing page error:", error);
     res.status(500).render("error/500");
