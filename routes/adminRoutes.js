@@ -9,6 +9,7 @@ import {
   blockUnblockUser,
   editProductPage,
   updateOrderStatus,
+  usersListPage,
 } from "../controllers/adminController.js";
 import { adminLogin } from "../controllers/adminAuth.js";
 import {
@@ -47,11 +48,13 @@ adminRoutes.get("/product/edit/:id", editProductPage);
 
 adminRoutes.post("/product/edit/:id", editProduct);
 
-adminRoutes.get("/orders-list",adminOrdersListPage);
+adminRoutes.get("/orders-list", adminOrdersListPage);
 
 adminRoutes.get("/update-order-status/:id/:status", updateOrderStatus);
 
 adminRoutes.get("/orders/:id", adminOrderDetailsPage);
+
+adminRoutes.get("/users-list", usersListPage);
 
 adminRoutes.post("/block-user/:id", blockUnblockUser);
 

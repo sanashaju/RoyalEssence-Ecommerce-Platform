@@ -222,11 +222,14 @@ export const adminOrderDetailsPage = async (req, res) => {
           productId: item.productId,
         });
 
+        //  console.log("console inside loop>>>> ", product);
+
         return {
           ...item,
           productName: product?.productName,
           brand: product?.brand,
-          stockStatus: product.stockStatus > 0,
+          stock: product?.stock,
+          stockStatus: product.stock > 0,
           image: product.thumbnail,
         };
       })
@@ -239,7 +242,7 @@ export const adminOrderDetailsPage = async (req, res) => {
       0
     );
 
-    console.log("cart with product Details>>>>>",cartWithProductDetails)
+    console.log("cart with product Details>>>>>", cartWithProductDetails);
 
     // Render the order details page
     res.render("admin/order-details", {
@@ -252,6 +255,43 @@ export const adminOrderDetailsPage = async (req, res) => {
   } catch (error) {
     console.error("Error loading admin order details:", error);
     res.status(500).send("Something went wrong loading order details.");
+  }
+};
+
+export const usersListPage = async (req, res) => {
+  // console.log("Admin UserstList route working 🚀");
+  try {
+    const db = await connectDB();
+
+    let usersData = await db
+      .collection(collection.USERS_COLLECTION)
+      .find({})
+      .toArray();
+
+    // format createdAt before sending to HBS
+    usersData = usersData.map((user) => {
+      return {
+        ...user,
+        createdAtFormatted: new Date(user.createdAt).toLocaleDateString(
+          "en-GB"
+        ), // dd/mm/yyyy
+      };
+    });
+
+    // console.log("userData:", usersData);
+
+    res.render("admin/userList", {
+      layout: "admin",
+      title: "Admin - Users List",
+      usersData,
+    });
+  } catch (error) {
+    // console.error("Error fetching user data:", error);
+    res.render("admin/userList", {
+      layout: "admin",
+      title: "Admin - UsersList",
+      usersData: [],
+    });
   }
 };
 
