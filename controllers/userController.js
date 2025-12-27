@@ -394,7 +394,7 @@ export const createAddress = async (req, res) => {
 
 export const placeOrder = async (req, res) => {
 
-  
+  // console.log("req.body consoled...>>>>>>",req.body)
   try {
     const userId = req.loggedInUser?.id;
     if (!userId) return res.redirect("/login");
