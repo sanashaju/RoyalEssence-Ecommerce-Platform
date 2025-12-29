@@ -50,37 +50,37 @@ export const bannerData = [
 export const brandsData = [
   {
     name: "Belle",
-    image: "/userAssets/imgs/brands/cdior_logo.png",
+    image: "/userAssets/imgs/brands/belle.png",
     link: "/shop",
   },
   {
     name: "Blue Lady",
-    image: "/userAssets/imgs/brands/cdior_logo.png",
+    image: "/userAssets/imgs/brands/bluelady.png",
     link: "/shop",
   },
   {
     name: "Coach",
-    image: "/userAssets/imgs/brands/coach-logo.png",
+    image: "/userAssets/imgs/brands/coach.png",
     link: "/shop",
   },
   {
     name: "Davidoff",
-    image: "/userAssets/imgs/brands/davidoff_logo.png",
+    image: "/userAssets/imgs/brands/davidoff.png",
     link: "/shop",
   },
   {
     name: "Yves Saint Laurent",
-    image: "/userAssets/imgs/brands/davidoff-logo.png",
+    image: "/userAssets/imgs/brands/ysl.png",
     link: "/shop",
   },
   {
     name: "Dior",
-    image: "/userAssets/imgs/brands/cdior_logo.png",
+    image: "/userAssets/imgs/brands/dior.png",
     link: "/shop",
   },
   {
     name: "Dolce & Gabbana",
-    image: "/userAssets/imgs/brands/dolce_logo.png",
+    image: "/userAssets/imgs/brands/dolce.png",
     link: "/shop",
   },
   {
@@ -90,7 +90,7 @@ export const brandsData = [
   },
   {
     name: "Jimmy Choo",
-    image: "/userAssets/imgs/brands/jimmy-choo.png",
+    image: "/userAssets/imgs/brands/jimmychoo.png",
     link: "/shop",
   },
   {
@@ -105,17 +105,12 @@ export const brandsData = [
   },
   {
     name: "Narciso Rodriguez",
-    image: "/userAssets/imgs/brands/narciso-rodriguez.png",
+    image: "/userAssets/imgs/brands/narciso.png",
     link: "/shop",
   },
   {
     name: "Paco Rabanne",
-    image: "/userAssets/imgs/brands/paco-rabanne.png",
-    link: "/shop",
-  },
-  {
-    name: "Poison Dior",
-    image: "/userAssets/imgs/brands/poison-dior.png",
+    image: "/userAssets/imgs/brands/paco.png",
     link: "/shop",
   },
   {
