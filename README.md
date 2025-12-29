@@ -75,12 +75,9 @@ RoyalEssence is built to deliver a modern e-commerce experience specifically for
 The project is hosted on **Render**.
 
 ### 🔗 Live Links
-- **User Panel:** [Moonlight Reads User](https://moonlight-reads-ecommerce-web-app.vercel.app/)  
-- **Admin Panel:** [Moonlight Reads Admin]()  
+- **User Panel:** [Royal Essence User](https://royal-essence.onrender.com/)  
+- **Admin Panel:** [Royal Essence Admin](https://royal-essence.onrender.com/admin)  
 
-**Admin Credentials:**  
-- Username: `admin`  
-- Password: `123`  
 
 ---
 
@@ -97,8 +94,9 @@ The project is hosted on **Render**.
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/adhilunnikrishnan/Moonlight-Reads-Ecommerce-WebApp.git
-cd Moonlight-Reads-Ecommerce-WebApp
+git clone https://github.com/sanashaju/RoyalEssence-Ecommerce-Platform.git
+cd RoyalEssence-Ecommerce-Platform
+
 ```
 
 ### 2️⃣ Install dependencies
