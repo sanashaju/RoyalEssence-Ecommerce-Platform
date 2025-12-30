@@ -64,7 +64,7 @@ export const brandsData = [
     link: "/shop",
   },
   {
-    name: "Davidoff",
+    name: "DavidOff",
     image: "/userAssets/imgs/brands/davidoff.png",
     link: "/shop",
   },
