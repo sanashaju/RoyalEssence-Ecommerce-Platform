@@ -48,11 +48,11 @@ export const bannerData = [
 
 
 export const brandsData = [
-  {
-    name: "Belle",
-    image: "/userAssets/imgs/brands/belle.png",
-    link: "/shop",
-  },
+  // {
+  //   name: "Belle",
+  //   image: "/userAssets/imgs/brands/belle.png",
+  //   link: "/shop",
+  // },
   {
     name: "Blue Lady",
     image: "/userAssets/imgs/brands/bluelady.png",
